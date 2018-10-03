@@ -45,6 +45,6 @@
 			ctx.font = "normal 12px PT Mono";
 			ctx.fillText(Math.round(times[i] * 1000 / 1000), 145 + i * (heightColumnGtgm + betweenColumnGtgm), 230);
 		}
-	};
+	}
 
 })();
