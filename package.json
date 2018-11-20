@@ -1,0 +1,16 @@
+{
+  "name": "code-and-magic",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "eslint": "^5.9.0",
+    "eslint-config-htmlacademy": "^0.5.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "eslint js --fix"
+  },
+  "author": "sofrono.i",
+  "license": "ISC"
+}

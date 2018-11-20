@@ -2,72 +2,85 @@
 // были доступны, их нужно поместить в глобальную область видимости(экспортировать).
 'use strict';
 
-(function() {
-	
-	var currentValue = 1;
+(function () {
 
-	// экспорт модуля
-	window.util = {
-		ESC_KEYCODE: 27,
-	  ENTER_KEYCODE: 13,
+  var currentValue = 1;
 
-		getRandomValue: function(values) {
-			return values[Math.floor(Math.random() * values.length)]; 
-		},
+  // экспорт модуля
+  window.util = {
+    ESC_KEYCODE: 27,
+    ENTER_KEYCODE: 13,
 
-		// вычисляет следующий цвет в массиве
-		getNextValue: function(values) {
-			currentValue++;
+    getRandomValue: function (values) {
+      return values[Math.floor(Math.random() * values.length)];
+    },
 
-			if (currentValue > values.length - 1) {
-				currentValue = 0;
-			}
-			
-			return values[currentValue];
-		},
+    // вычисляет следующий цвет в массиве
+    getNextValue: function (values) {
+      currentValue++;
+
+      if (currentValue > values.length - 1) {
+        currentValue = 0;
+      }
+
+      return values[currentValue];
+    },
 
     // находит мах элемент в массиве
-		getMaxElementArray: function(arr) {
-			var max = -1;
+    getMaxElementArray: function (arr) {
+      var max = -1;
 
-			for (var i = 0; i < arr.length ; i++) {
-				if (arr[i] > max) {
-					max = arr[i];
-				}
-			}
-			
-			return max;
-		},
+      for (var i = 0; i < arr.length; i++) {
+        if (arr[i] > max) {
+          max = arr[i];
+        }
+      }
 
-		errorHundler: function(errorMessage) {
-			var error = document.querySelector('.error-box');
-			var errorMessageBox = document.querySelector('.error-box__message');
-			var errorClose = document.querySelector('.error-box__close');
-			
-			errorMessageBox.textContent = errorMessage;
+      return max;
+    },
 
-			error.classList.remove('hidden');
+    errorHundler: function (errorMessage) {
+      var error = document.querySelector('.error-box');
+      var errorMessageBox = document.querySelector('.error-box__message');
+      var errorClose = document.querySelector('.error-box__close');
 
-			errorClose.addEventListener('click', function(event) {
-				error.classList.add('hidden');
-			});
-		}, 
+      errorMessageBox.textContent = errorMessage;
 
-		debounce: function(func, wait, immediate) {
-			var timeout;
+      error.classList.remove('hidden');
 
-			return function() {
-				var context = this, args = arguments;
-				var later = function() {
-					timeout = null;
-					if (!immediate) func.apply(context, args);
-				};
-				var callNow = immediate && !timeout;
-				clearTimeout(timeout);
-				timeout = setTimeout(later, wait);
-				if (callNow) func.apply(context, args);
-			};
-		}
-	}
+      errorClose.addEventListener('click', function () {
+        error.classList.add('hidden');
+      });
+
+      setTimeout(function () {
+        error.classList.add('hidden');
+      }, 3000);
+    },
+
+    debounce: function (func, wait, immediate) {
+      var timeout;
+
+      return function () {
+        var context = this;
+        var args = arguments;
+
+        var later = function () {
+          timeout = null;
+          if (!immediate) {
+            func.apply(context, args);
+          }
+        };
+
+        var callNow = immediate && !timeout;
+
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+
+        if (callNow) {
+          func.apply(context, args);
+        }
+      };
+    }
+  };
 
 })();

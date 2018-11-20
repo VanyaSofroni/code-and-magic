@@ -1,13 +1,13 @@
 'use strict';
 
-(function() {
+(function () {
 
-	var DEBOUNCE_INTERVAL = 500;
-	var wizards = [];
-	var currentCoat;
+  var DEBOUNCE_INTERVAL = 500;
+  var wizards = [];
+  var currentCoat;
   var currentEyes;
 
-	var getRank = function(wizard) {
+  var getRank = function (wizard) {
     var rank = 0;
 
     if (wizard.colorCoat === currentCoat) {
@@ -43,17 +43,17 @@
   };
 
   window.similar = {
-  	eyesChangeHandler: window.util.debounce(function (color) {
-  		currentEyes = color;
-  		updateWizards();
-  	}, DEBOUNCE_INTERVAL),
-  	coatChangeHandler: window.util.debounce(function (color) {
-  		currentCoat = color;
-  		updateWizards();
-  	}, DEBOUNCE_INTERVAL)
+    eyesChangeHandler: window.util.debounce(function (color) {
+      currentEyes = color;
+      updateWizards();
+    }, DEBOUNCE_INTERVAL),
+    coatChangeHandler: window.util.debounce(function (color) {
+      currentCoat = color;
+      updateWizards();
+    }, DEBOUNCE_INTERVAL)
   };
 
-  var loadHandler = function(data) {
+  var loadHandler = function (data) {
     wizards = data;
     updateWizards();
   };
